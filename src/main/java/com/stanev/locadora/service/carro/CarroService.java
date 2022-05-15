@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 
 import com.stanev.locadora.domain.carro.Carro;
 import com.stanev.locadora.dto.carro.CarroPOST;
@@ -66,4 +67,18 @@ public class CarroService implements iCarroService{
     public Carro cadastrarCarro(CarroPOST carro) {
         return carroRepository.save(new Carro(null, carro.getMarca(), carro.getModelo(), carro.getCor(), carro.getPlaca(), carro.getDiaria()));
     }
+    
+    @Override
+    public Optional<Carro> excluirCarro(Integer codigo) {
+    	Carro carro = carroRepository.findById(codigo).orElse(null);
+    	if (carro == null) throw new RestClientException("Carro not found for delete");
+    	carroRepository.delete(carro);
+    	return Optional.ofNullable(carro);
+    }
+
+    @Override
+    public Carro atualizarCarro(Carro carro) {
+    	return carroRepository.save(carro);
+    }
+    
 }

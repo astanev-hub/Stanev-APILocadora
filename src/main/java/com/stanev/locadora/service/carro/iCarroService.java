@@ -23,5 +23,8 @@ public interface iCarroService {
     Optional<Carro> buscarCarroPorMarcaModelo(String marca, String modelo);
     
     Carro cadastrarCarro(CarroPOST carro);
+    
+    Optional<Carro> excluirCarro(Integer codigo);
 
+    Carro atualizarCarro(Carro carro);
 }

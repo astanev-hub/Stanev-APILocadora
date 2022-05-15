@@ -66,6 +66,17 @@ public class CarroResource {
 	    public ResponseEntity<Carro> cadastrarCarro(@RequestBody CarroPOST carro){
 	        return ResponseEntity.status(HttpStatus.CREATED).body(service.cadastrarCarro(carro));
 	    }
+
+	   @RequestMapping(method = RequestMethod.DELETE)
+	    public ResponseEntity<Optional<Carro>> excluirCarro(@RequestParam Integer codigo){
+	        return ResponseEntity.status(HttpStatus.OK).body(service.excluirCarro(codigo));
+	    }
+	   
+	   @RequestMapping(method = RequestMethod.PUT)
+	    public ResponseEntity<Carro> atualizarCarro(@RequestBody Carro carro){
+	        return ResponseEntity.status(HttpStatus.OK).body(service.atualizarCarro(carro));
+	    }
+	   
 	   
 }
 
