@@ -74,7 +74,7 @@ public class CarroService implements iCarroService{
     	if (carro == null) throw new RestClientException("Carro not found for delete");
     	carroRepository.delete(carro);
     	return Optional.ofNullable(carro);
-    }
+    } 
 
     @Override
     public Carro atualizarCarro(Carro carro) {
